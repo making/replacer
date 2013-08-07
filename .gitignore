@@ -1,0 +1,14 @@
+target/META-INF
+target/classes
+target/maven-archiver
+target/replacer
+target/surefire
+target/test-classes
+.settings
+.classpath
+.project
+.springBeans
+*~
+.git
+.idea
+.DS_Store
