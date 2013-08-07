@@ -1,6 +1,8 @@
 package replacer;
+
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.regex.Pattern;
@@ -29,7 +31,11 @@ public class PackageName extends Target {
             // ゴミ削除
             File toBeDeleted = file.getParentFile();
             for (int i = 1; i < fromPackages.length; i++) {
-                Files.deleteIfExists(toBeDeleted.toPath());
+                try {
+                    Files.deleteIfExists(toBeDeleted.toPath());
+                } catch (DirectoryNotEmptyException e) {
+                    // IGNORE
+                }
                 toBeDeleted = toBeDeleted.getParentFile();
             }
         } catch (IOException e) {
